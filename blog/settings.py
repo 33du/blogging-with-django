@@ -23,10 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g@^tjr*2=t821a-d08n9)#)_4exvlt^0h!*ss6_=bvqw0!#e-a')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+#DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = True;
 
 ALLOWED_HOSTS = [
     'mysterious-chamber-12919.herokuapp.com',
+    'localhost',
 ]
 
 CSRF_COOKIE_SECURE = True
@@ -138,8 +140,8 @@ STATIC_URL = '/static/'
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
