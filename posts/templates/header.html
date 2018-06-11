@@ -1,0 +1,208 @@
+{% block stylesheet %}
+<style>
+  .form-group {
+    margin-bottom: 0.5rem;
+  }
+
+  .form-error {
+    color: red;
+  }
+
+  .modal-body {
+    padding-top: 0rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .modal label {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+  }
+
+  .modal label > span {
+    font-size: 0.7rem;
+    color: grey;
+  }
+
+  .modal button {
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 576px) {
+    .navbar-text {
+      display: none;
+    }
+  }
+</style>
+{% endblock %}
+
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <div class="navbar-brand">SomeBlog</div>
+
+  <button class="navbar-toggler order-3" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/posts/">Posts</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/">Admin</a></li>
+    </ul>
+  </div>
+
+    <ul class="navbar-nav flex-row">
+      {% if user.is_authenticated %}
+            <span class="navbar-text pr-3">Welcome back, {{ user.username }}!</span>
+            <li class="nav-item"><a class="logoutlink nav-link" href="/users/logout/">logout</a></li>
+      {% else %}
+            <li class="nav-item"><a class="registerlink nav-link pr-3" href="#">Sign up</a></li>
+            <li class="nav-item"><a class="loginlink nav-link" href="#">Login</a></li>
+      {% endif %}
+    </ul>
+
+</nav>
+
+<div id="loginmodal" class="modal fade">
+  <div class="modal-dialog" role="dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="errorMsg" class="form-error"></p>
+          <form id="loginForm" action="/users/login/" method="post">{% csrf_token %}
+
+            <div class="fieldWrapper form-group">
+              <label for="{{ login_form.login_username.id_for_label }}">Username: </label><br>
+              {{ login_form.login_username }}
+            </div>
+
+            <div class="fieldWrapper form-group">
+              <label for="{{ login_form.login_password.id_for_label }}">Password: </label><br>
+              {{ login_form.login_password }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+
+      </div>
+    </div>
+
+</div>
+
+<div id="registermodal" class="modal fade">
+  <div class="modal-dialog" role="dialog">
+    <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Registration</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p id="errorMsg2" class="form-error"></p>
+          <form id="registerForm" action="/users/registration/" method="post">{% csrf_token %}
+            <div class="fieldWrapper form-group">
+              <label for="{{ registration_form.username.id_for_label }}">Username: </label><br>
+              {{ registration_form.username }}
+            </div>
+
+            <div class="fieldWrapper form-group">
+              <label for="{{ registration_form.password.id_for_label }}">Password: </label><br>
+              {{ registration_form.password }}
+            </div>
+
+            <div class="fieldWrapper form-group">
+              <label for="{{ registration_form.password_confirm.id_for_label }}">Confirm password: </label><br>
+              {{ registration_form.password_confirm }}
+            </div>
+
+            <div class="fieldWrapper form-group">
+              <label for="{{ registration_form.email.id_for_label }}">Email: <span>(optional)</span></label><br>
+              {{ registration_form.email }}
+            </div>
+
+            <div class="fieldWrapper form-group">
+              <label for="{{ registration_form.firstname.id_for_label }}">Firstname: <span>(optional)</span></label><br>
+              {{ registration_form.firstname }}
+            </div>
+
+            <div class="fieldWrapper form-group">
+              <label for="{{ registration_form.lastname.id_for_label }}">Lastname: <span>(optional)</span></label><br>
+              {{ registration_form.lastname }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign up</button>
+
+          </form>
+        </div>
+
+        <div class="modal-footer">
+        </div>
+
+      </div>
+    </div>
+
+</div>
+
+
+<script>
+$(document).ready(function() {
+  $(".loginlink").click(function(){
+      $("#loginmodal").modal();
+  });
+
+  $(".registerlink").click(function(){
+      $("#registermodal").modal();
+  });
+
+  $("#loginForm").submit(function(e) {
+    var form = $('#loginForm')
+    $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: form.serialize(),
+        success: function (response) {
+          if (response.has_error) {
+            $("#errorMsg").html("<span class='badge badge-pill badge-danger'>!</span> "+ response.error_msg);
+          } else {
+            $("#loginmodal").modal('toggle');
+            location.reload();
+          }
+        }
+    });
+    return false;
+  });
+
+  $("#registerForm").submit(function(e) {
+    var form = $('#registerForm')
+    $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: form.serialize(),
+        success: function (response) {
+          if (response.has_error) {
+            $("#errorMsg2").html("<span class='badge badge-pill badge-danger'>!</span> "+ response.error_msg);
+          } else {
+            $("#registermodal .modal-body").html("register success!<p><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>");
+          }
+        }
+    });
+    return false;
+  });
+
+  var pathname = window.location.pathname;
+	$('.nav-link[href="'+pathname+'"]').parent().addClass('active');
+});
+</script>

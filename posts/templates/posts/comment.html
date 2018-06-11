@@ -1,0 +1,257 @@
+<style>
+  .comment-row {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .comment-name {
+    font-weight: bold;
+    color: #3498DB;
+    margin-bottom: 0.5rem;
+  }
+
+  .comment-time {
+    font-size: 0.7em;
+    color: #95a5a6;
+    margin-left: 0.5rem;
+  }
+
+  .comment-text {
+    margin-bottom: 0.8rem;
+    margin-top: 0.4rem;
+  }
+
+  .btn {
+    padding: 0.35rem 0.72rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .btn-sm {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.7rem;
+    line-height: 1.2;
+    border-radius: 0.2rem;
+  }
+
+  .parent-field {
+    display: none;
+  }
+
+  .form-error {
+    color: red;
+  }
+
+  .comment-button {
+    margin-bottom: 1rem;
+  }
+
+  .comment-note {
+    font-size: 0.7em;
+    color: #95a5a6;
+    line-height: 1.1;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .comment-container {
+    display:flex;
+  }
+
+  .hide-container {
+    padding-top: 1rem;
+    padding-right: 0.5rem;
+    padding-bottom: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .hide-container > a:visited { color:#95a5a6 !important; }
+</style>
+
+<div class="comment-button">
+  <button type="button" class="btn btn-outline-info comment-btn">Write a comment!</button>
+</div>
+
+<div class="comment-container pb-3">
+  {% if comment_list %}
+  <div class="hide-container"><a href="#" class="hide-btn">&rarr;</a></div>
+  {% endif %}
+    <div class="to-hide">
+  {% for comment in comment_list %}
+    <div class="comment-row" id="{{ comment.id }}">
+      {% if comment.alias %}
+        <span class="comment-name">{{ comment.alias }}</span>
+      {% elif comment.user  %}
+        <span class="comment-name">{{ comment.user.username }}</span>
+      {% else %}
+          <span class="comment-name">Anonymous user</span>
+      {% endif %}
+      <span class="comment-time">{{ comment.pub_time }}</span>
+      <div class="comment-text">{{ comment.text }}</div>
+      <button type="button" class="btn btn-outline-info btn-sm comment-btn reply-btn">Reply</button>
+
+      {% if user.get_username == comment.user.username or user.is_superuser %}
+        <button type="button" class="btn btn-outline-secondary btn-sm delete-btn">Delete</button>
+      {% endif %}
+    </div>
+
+      {% if comment.comment_set.all %}
+      <div class="comment-container pl-5">
+      <div class="hide-container"><a href="#" class="hide-btn">&rarr;</a></div>
+        <div class="to-hide">
+          {% for child_comment in comment.comment_set.all|dictsort:"pub_time" %}
+            <div class="comment-row" id="{{ comment.id }}">
+              {% if child_comment.alias %}
+                <span class="comment-name">{{ child_comment.alias }}</span>
+              {% elif child_comment.user  %}
+                <span class="comment-name">{{ child_comment.user.username }}</span>
+              {% else %}
+                  <span class="comment-name">Anonymous user</span>
+              {% endif %}
+              <span class="comment-time">{{ child_comment.pub_time }}</span>
+              <div class="comment-text">{{ child_comment.text }}</div>
+              <button type="button" class="btn btn-outline-info btn-sm comment-btn reply-btn">Reply</button>
+
+              {% if user.get_username == child_comment.user.username or user.is_superuser %}
+                <button type="button" class="btn btn-outline-secondary btn-sm delete-btn">Delete</button>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div></div>
+      {% endif %}
+  {% endfor %}
+</div></div>
+
+
+<div id="comment-modal" class="modal fade">
+  <div class="modal-dialog" role="dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Comment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="error-msg" class="form-error"></p>
+          <form id="comment-form" method="post" action="">{% csrf_token %}
+
+            <div class="fieldWrapper form-group">
+              <label for="{{ form.alias.id_for_label }}">Alias: </label><br>
+              {{ form.alias }}
+              <div class="comment-note">Choose your name to display, leave blank to show your username(logged in)
+                or "Anonymous user".</div>
+            </div>
+
+            <div class="fieldWrapper form-group parent-field">
+              <label for="{{ form.parent_id.id_for_label }}"></label><br>
+              {{ form.parent_id }}
+            </div>
+
+            <div class="fieldWrapper form-group">
+              <label for="{{ form.text.id_for_label }}">Comment: </label><br>
+              {{ form.text }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+
+      </div>
+    </div>
+
+</div>
+
+  <script>
+  $(document).ready(function() {
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+      }
+    });
+
+    $(".comment-btn").click(function(){
+        $("#comment-modal").modal();
+
+        if ($(this).is(".reply-btn")) {
+          var parent_id = $(this).parent().attr('id');
+          $("#id_parent_id").val(parent_id);
+        }
+
+    });
+
+    $(".hide-btn").click(function(){
+        $(this).parent().next().toggle();
+        if ($(this).html() == 'show comments') {
+          $(this).html('&rarr;');
+          $(this).parent().css({"text-decoration": "none"})
+        } else {
+          $(this).html('show comments');
+          $(this).parent().css({"text-decoration": "underline"});
+        }
+    });
+
+    $(".delete-btn").click(function(){
+      var result = confirm("Are you sure?");
+      if (result) {
+        $.ajax({
+            type: 'POST',
+            url: '/posts/comment/delete/',
+            data: { 'comment_id': $(this).parent().attr('id') },
+            success: function (response) {
+              if (response.has_error) {
+                alert("You cannot delete that!");
+              } else {
+                location.reload();
+              }
+            }
+        });
+      }
+    });
+
+    $("#comment-form").submit(function(e) {
+      var form = $('#comment-form');
+      $.ajax({
+          type: form.attr('method'),
+          url: form.attr('action'),
+          data: form.serialize(),
+          success: function (response) {
+            if (response.has_error) {
+              $("#error-msg").html("<span class='badge badge-pill badge-danger'>!</span> "+ response.error_msg);
+            } else {
+              $("#comment-modal").modal('toggle');
+              location.reload();
+            }
+          }
+      });
+      return false;
+    });
+
+  });
+  </script>

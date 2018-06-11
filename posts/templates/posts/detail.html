@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block stylesheet %}
+<style>
+  .container {
+    margin: 3rem;
+    width: auto;
+  }
+
+  .post-time {
+    font-size: 0.95em;
+  }
+
+  .post-text {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  @media (max-width: 600px) {
+
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .post-text {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="post">
+    <h2>{{ post.title }}</h2>
+
+    <div class="info-container">
+      <div class="post-time">{{ post.pub_time }}</div>
+        {% for tag in post.tag.all %}
+            <span class="badge badge-pill" id="{{ forloop.counter0 }}">{{ tag }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="post-text">
+      {{ post.text|safe }}
+    </div>
+
+  </div>
+  <div class="comment">
+  {% include "posts/comment.html" with post=post form=form %}
+  </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+$(document).ready(function() {
+
+  var badges = ["badge-success",
+                "badge-info",
+                "badge-warning",
+                "badge-danger",
+                "badge-secondary",
+                "badge-primary"
+                ];
+
+  for (var i = 0; i < $(".info-container span").length; i++) {
+    var badge = badges[i % badges.length];
+    $('.badge[id=' + i + ']').addClass(badge);
+  }
+
+});
+</script>
+{% endblock %}
