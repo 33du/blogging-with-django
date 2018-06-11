@@ -24,7 +24,6 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g@^tjr*2=t821a-d08n9)#)_4exvlt
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
-DEBUG = True;
 
 ALLOWED_HOSTS = [
     'mysterious-chamber-12919.herokuapp.com',
