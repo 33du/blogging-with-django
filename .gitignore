@@ -1,6 +1,7 @@
 # Local config:
 local_settings.py
 settings.py.local
+media/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
