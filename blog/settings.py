@@ -26,8 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g@^tjr*2=t821a-d08n9)#)_4exvlt
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '10.0.2.2',
-    'localhost',
+    'mysterious-chamber-12919.herokuapp.com',
 ]
 
 CSRF_COOKIE_SECURE = True
