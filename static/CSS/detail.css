@@ -4,6 +4,10 @@
 }
 
 .post-time {
+  margin-bottom: 0.7rem;
+}
+
+.post-time {
   font-size: 0.95em;
 }
 
@@ -18,6 +22,10 @@
 }
 
 .foot-nav > span > a {
+  color: #95a5a6;
+}
+
+.disabled {
   color: #95a5a6;
 }
 

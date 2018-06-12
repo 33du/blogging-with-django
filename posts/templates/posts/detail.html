@@ -29,7 +29,7 @@
       {% if prev %}
         <a href="{% url 'posts:detail' prev.id %}">&larr; Previous: {{ prev.title|truncatechars:10 }}</a>
       {% else %}
-        <a class="disabled">Previous: none</a>
+        <span class="disabled">&larr; Previous: none</span>
       {% endif %}
     </span>
 
@@ -37,7 +37,7 @@
       {% if next %}
         <a href="{% url 'posts:detail' next.id %}">Next: {{ next.title|truncatechars:10 }} &rarr;</a>
       {% else %}
-        <a class="disabled">Next: none</a>
+        <span class="disabled">Next: none &rarr;</span>
       {% endif %}
     </span>
   </div><br>
