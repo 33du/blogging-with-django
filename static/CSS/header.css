@@ -1,0 +1,33 @@
+.form-group {
+  margin-bottom: 0.5rem;
+}
+
+.form-error {
+  color: red;
+}
+
+.modal-body {
+  padding-top: 0rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.modal label {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+
+.modal label > span {
+  font-size: 0.7rem;
+  color: grey;
+}
+
+.modal button {
+  margin-top: 1rem;
+}
+
+@media (max-width: 576px) {
+  .navbar-text {
+    display: none;
+  }
+}

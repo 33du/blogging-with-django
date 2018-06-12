@@ -1,39 +1,6 @@
+{% load static %}
 {% block stylesheet %}
-<style>
-  .form-group {
-    margin-bottom: 0.5rem;
-  }
-
-  .form-error {
-    color: red;
-  }
-
-  .modal-body {
-    padding-top: 0rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
-  .modal label {
-    font-size: 0.8rem;
-    margin-bottom: 0;
-  }
-
-  .modal label > span {
-    font-size: 0.7rem;
-    color: grey;
-  }
-
-  .modal button {
-    margin-top: 1rem;
-  }
-
-  @media (max-width: 576px) {
-    .navbar-text {
-      display: none;
-    }
-  }
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/header.css' %}" />
 {% endblock %}
 
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
@@ -156,53 +123,4 @@
 
 </div>
 
-
-<script>
-$(document).ready(function() {
-  $(".loginlink").click(function(){
-      $("#loginmodal").modal();
-  });
-
-  $(".registerlink").click(function(){
-      $("#registermodal").modal();
-  });
-
-  $("#loginForm").submit(function(e) {
-    var form = $('#loginForm')
-    $.ajax({
-        type: form.attr('method'),
-        url: form.attr('action'),
-        data: form.serialize(),
-        success: function (response) {
-          if (response.has_error) {
-            $("#errorMsg").html("<span class='badge badge-pill badge-danger'>!</span> "+ response.error_msg);
-          } else {
-            $("#loginmodal").modal('toggle');
-            location.reload();
-          }
-        }
-    });
-    return false;
-  });
-
-  $("#registerForm").submit(function(e) {
-    var form = $('#registerForm')
-    $.ajax({
-        type: form.attr('method'),
-        url: form.attr('action'),
-        data: form.serialize(),
-        success: function (response) {
-          if (response.has_error) {
-            $("#errorMsg2").html("<span class='badge badge-pill badge-danger'>!</span> "+ response.error_msg);
-          } else {
-            $("#registermodal .modal-body").html("register success!<p><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>");
-          }
-        }
-    });
-    return false;
-  });
-
-  var pathname = window.location.pathname;
-	$('.nav-link[href="'+pathname+'"]').parent().addClass('active');
-});
-</script>
+{% block javascript %}<script src="{% static 'js/header.js' %}"></script>{% endblock %}

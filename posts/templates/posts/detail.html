@@ -1,49 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block stylesheet %}
-<style>
-  .container {
-    margin: 3rem;
-    width: auto;
-  }
-
-  .post-time {
-    font-size: 0.95em;
-  }
-
-  .post-text {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-
-  h2 {
-    font-size: 1.9rem;
-  }
-
-  img {
-    max-width: 100%;
-  }
-
-  @media (max-width: 600px) {
-
-    .container {
-      padding-left: 0;
-      padding-right: 0;
-      margin-left: 0;
-      margin-right: 0;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .post-text {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-    }
-  }
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/detail.css' %}" />
 {% endblock %}
 
 {% block title %}{{ post.title }}{% endblock %}
@@ -65,29 +23,29 @@
     </div>
 
   </div>
+
+  <div class="foot-nav">
+    <span class="prev">
+      {% if prev %}
+        <a href="{% url 'posts:detail' prev.id %}">&larr; Previous: {{ prev.title|truncatechars:10 }}</a>
+      {% else %}
+        <a class="disabled">Previous: none</a>
+      {% endif %}
+    </span>
+
+    <span class="next">
+      {% if next %}
+        <a href="{% url 'posts:detail' next.id %}">Next: {{ next.title|truncatechars:10 }} &rarr;</a>
+      {% else %}
+        <a class="disabled">Next: none</a>
+      {% endif %}
+    </span>
+  </div><br>
+
   <div class="comment">
   {% include "posts/comment.html" with post=post form=form %}
   </div>
 </div>
 {% endblock %}
 
-{% block javascript %}
-<script>
-$(document).ready(function() {
-
-  var badges = ["badge-success",
-                "badge-info",
-                "badge-warning",
-                "badge-danger",
-                "badge-secondary",
-                "badge-primary"
-                ];
-
-  for (var i = 0; i < $(".info-container span").length; i++) {
-    var badge = badges[i % badges.length];
-    $('.badge[id=' + i + ']').addClass(badge);
-  }
-
-});
-</script>
-{% endblock %}
+{% block javascript %}<script src="{% static 'js/detail.js' %}"></script>{% endblock %}

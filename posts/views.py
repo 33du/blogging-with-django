@@ -63,6 +63,17 @@ def post_detail(request, post_id):
     login_form = LoginForm()
     registration_form = RegistrationForm()
 
+    try:
+        next = Post.objects.all().filter(pub_time__lte=post.pub_time).exclude(id=post_id).order_by('-pub_time')[0:1].get()
+    except Post.DoesNotExist:
+        next = None
+
+    try:
+        prev = Post.objects.all().filter(pub_time__lte=timezone.now(), pub_time__gte=post.pub_time).exclude(id=post_id).order_by('pub_time')[0:1].get()
+    except Post.DoesNotExist:
+        prev = None
+
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
 
@@ -103,7 +114,9 @@ def post_detail(request, post_id):
             'registration_form': registration_form,
             'post': post,
             'form': form,
-            'comment_list': comment_list
+            'comment_list': comment_list,
+            'prev': prev,
+            'next': next,
         }
         return render(request, 'posts/detail.html', context_objects)
 

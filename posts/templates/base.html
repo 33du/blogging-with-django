@@ -5,20 +5,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrap.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'CSS/base.css' %}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-        <style>
-          .to-top {
-            display: none;
-          }
-
-          .sticky-bottom {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-          }
-          </style>
+        <script src="{% static 'js/base.js' %}"></script>
         {% block stylesheet %}{% endblock %}
     </head>
     <body>
@@ -33,22 +24,3 @@
     {% block javascript %}{% endblock %}
     </body>
 </html>
-
-<script>
-$(document).ready(function() {
-  //Check to see if the window is top if not then display button
-  $(window).scroll(function(){
-        if ($(this).scrollTop() > 500) {
-            $('.to-top').fadeIn();
-        } else {
-            $('.to-top').fadeOut();
-        }
-    });
-
-    //Click event to scroll to top
-    $('.to-top').click(function(){
-        $("html, body").animate({scrollTop: 0}, 1000);
-        return false;
-    });
-});
-</script>
