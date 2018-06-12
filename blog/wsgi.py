@@ -14,3 +14,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blog.settings")
 
 application = get_wsgi_application()
+
+from dotenv import load_dotenv
+project_folder = os.path.expanduser('.')  # adjust as appropriate
+load_dotenv(os.path.join(project_folder, '.env'))
