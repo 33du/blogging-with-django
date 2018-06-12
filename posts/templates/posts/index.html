@@ -49,4 +49,14 @@
 
 {% endblock %}
 
-{% block javascript %}<script src="{% static 'js/header.js' %}"></script>{% endblock %}
+{% block javascript %}<script src="{% static 'js/header.js' %}"></script>
+<script>
+$(document).ready(function() {
+  var tag = "{{ tag_chosen }}";
+  if (tag != null) {
+    var tag_name = "{{ tag_chosen.name }}"
+    $('.tag[id=' + tag_name + ']').addClass('active');
+  }
+});
+</script>
+{% endblock %}
