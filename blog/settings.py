@@ -28,10 +28,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g@^tjr*2=t821a-d08n9)#)_4exvlt
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = [
+    '33du.pythonanywhere.com',
     'localhost',
 ]
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 
 
 # Application definition
@@ -81,16 +82,7 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 # Database - local_settings
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blog',
-        'USER': 'admin',
-        'PASSWORD': 'admin12345',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+import local_settings
 
 
 # Password validation
@@ -130,10 +122,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# The URL to use when referring to static files (where they will be served from)
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 
-#MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
