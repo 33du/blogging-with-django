@@ -3,6 +3,9 @@ local_settings.py
 settings.py.local
 media/
 
+# pip installed:
+summernote/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
