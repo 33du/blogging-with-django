@@ -82,7 +82,6 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 # Database - local_settings
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-import local_settings
 
 
 # Password validation
@@ -127,3 +126,8 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
