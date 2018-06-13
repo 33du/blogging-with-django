@@ -8,21 +8,6 @@
 
 {% block content %}
 <div class="container">
-  <div class="post">
-    <h2>{{ post.title }}</h2>
-
-    <div class="info-container">
-      <div class="post-time">{{ post.pub_time }}</div>
-        {% for tag in post.tag.all %}
-            <span class="badge badge-pill" id="{{ forloop.counter0 }}">{{ tag }}</span>
-        {% endfor %}
-    </div>
-
-    <div class="post-text">
-      {{ post.text|safe }}
-    </div>
-
-  </div>
 
   <div class="foot-nav">
     <span class="prev">
@@ -41,6 +26,22 @@
       {% endif %}
     </span>
   </div><br>
+
+  <div class="post">
+    <h2>{{ post.title }}</h2>
+
+    <div class="info-container">
+      <div class="post-time">{{ post.pub_time }}</div>
+        {% for tag in post.tag.all %}
+            <a class="tag disabled">{{ tag }}</a>
+        {% endfor %}
+    </div>
+
+    <div class="post-text">
+      {{ post.text|safe }}
+    </div>
+
+  </div>
 
   <div class="comment">
   {% include "posts/comment.html" with post=post form=form %}

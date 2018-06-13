@@ -4,7 +4,7 @@
 {% endblock %}
 
 <div class="comment-button">
-  <button type="button" class="btn btn-outline-info comment-btn">Write a comment!</button>
+  <button type="button" class="btn btn-outline-info comment-btn my-btn">Write a comment!</button>
 </div>
 
 <div class="comment-container pb-3">
@@ -23,10 +23,10 @@
       {% endif %}
       <span class="comment-time">{{ comment.pub_time }}</span>
       <div class="comment-text">{{ comment.text }}</div>
-      <button type="button" class="btn btn-outline-info btn-sm comment-btn reply-btn">Reply</button>
+      <button type="button" class="btn btn-outline-info btn-sm comment-btn reply-btn my-btn">Reply</button>
 
       {% if user.get_username == comment.user.username or user.is_superuser %}
-        <button type="button" class="btn btn-outline-secondary btn-sm delete-btn">Delete</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm delete-btn my-btn">Delete</button>
       {% endif %}
     </div>
 
@@ -45,10 +45,10 @@
               {% endif %}
               <span class="comment-time">{{ child_comment.pub_time }}</span>
               <div class="comment-text">{{ child_comment.text }}</div>
-              <button type="button" class="btn btn-outline-info btn-sm comment-btn reply-btn">Reply</button>
+              <button type="button" class="btn btn-outline-info btn-sm comment-btn reply-btn my-btn">Reply</button>
 
               {% if user.get_username == child_comment.user.username or user.is_superuser %}
-                <button type="button" class="btn btn-outline-secondary btn-sm delete-btn">Delete</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm delete-btn my-btn">Delete</button>
               {% endif %}
             </div>
           {% endfor %}
@@ -88,7 +88,7 @@
               {{ form.text }}
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn my-btn">Submit</button>
           </form>
         </div>
         <div class="modal-footer">

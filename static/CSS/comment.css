@@ -1,3 +1,7 @@
+.comment {
+  margin-top: 3rem;
+}
+
 .comment-row {
   padding-top: 1rem;
   margin-bottom: 1rem;
@@ -5,32 +9,46 @@
 
 .comment-name {
   font-weight: bold;
-  color: #3498DB;
+  color: #595959;
   margin-bottom: 0.5rem;
 }
 
 .comment-time {
   font-size: 0.7em;
-  color: #95a5a6;
+  color: #999999;
   margin-left: 0.5rem;
 }
 
 .comment-text {
+  color: #737373;
   margin-bottom: 0.8rem;
   margin-top: 0.4rem;
 }
 
-.btn {
-  padding: 0.35rem 0.72rem;
-  font-size: 0.85rem;
-  line-height: 1.4;
+.comment-btn {
+  color: #404040;
+  border-color: #e6e6e6;
+  border-width: 1.5px;
 }
 
-.btn-sm {
-  padding: 0.2rem 0.4rem;
-  font-size: 0.7rem;
-  line-height: 1.2;
-  border-radius: 0.2rem;
+.comment-btn:hover {
+  color: #404040;
+  border-color: #e6e6e6;
+  background-color: #e6e6e6;
+}
+
+.comment-btn.btn-sm {
+  padding: 0.2rem 0.5rem;
+  border-width: 1px;
+}
+
+.delete-btn {
+  padding: 0.2rem 0.5rem;
+  border-width: 1px;
+}
+
+.delete-btn.hover {
+  color: #fff;
 }
 
 .parent-field {
@@ -39,6 +57,18 @@
 
 .form-error {
   color: red;
+}
+
+#id_text {
+  width: 100%;
+}
+
+#id_alias {
+  max-width: 100%;
+}
+
+.modal button {
+  margin-top: 0;
 }
 
 .comment-button {

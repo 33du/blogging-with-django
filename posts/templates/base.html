@@ -4,6 +4,7 @@
         <title>{% block title %}Blog{% endblock %}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'CSS/bootstrap.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'CSS/base.css' %}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,7 +20,7 @@
           {% block content %}
           {% endblock %}
         </div>
-        <div class="sticky-bottom"><a class="btn btn-outline-info btn-sm to-top" href="#">&uarr;</a></div>
+        <div class="sticky-bottom"><a class="btn btn-outline-info btn-sm to-top my-btn" href="#">&uarr;</a></div>
 
     {% block javascript %}{% endblock %}
     </body>

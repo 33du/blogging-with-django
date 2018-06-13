@@ -1,14 +1,13 @@
 .container {
-  margin: 4rem 5rem;
+  margin: 2rem 5rem;
   width: auto;
 }
 
 .post-time {
-  margin-bottom: 0.7rem;
-}
-
-.post-time {
   font-size: 0.95em;
+  color: #404040;
+  font-style: italic;
+  margin-bottom: 0.4rem;
 }
 
 .post-text {
@@ -18,15 +17,15 @@
 
 .foot-nav {
   font-size: 0.9rem;
-  margin-bottom: 4rem;
+  padding-bottom: 2rem;
 }
 
 .foot-nav > span > a {
-  color: #95a5a6;
+  color: #595959;
 }
 
-.disabled {
-  color: #95a5a6;
+.foot-nav > span > .disabled {
+  color: #595959;
 }
 
 .prev {
@@ -47,7 +46,7 @@ img {
 
 @media (min-width: 1200px) {
   .container {
-    margin: 4rem 9rem;
+    margin: 2rem 9rem;
   }
 }
 
@@ -64,7 +63,7 @@ img {
     padding-right: 0;
     margin-left: 0;
     margin-right: 0;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     margin-bottom: 1rem;
   }
 

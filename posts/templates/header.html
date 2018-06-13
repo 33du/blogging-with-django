@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'CSS/header.css' %}" />
 {% endblock %}
 
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+<nav class="navbar navbar-expand-md">
   <div class="navbar-brand">SomeBlog</div>
 
   <button class="navbar-toggler order-3" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -55,7 +55,7 @@
               {{ login_form.login_password }}
             </div>
 
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn my-btn">Login</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -110,7 +110,7 @@
               {{ registration_form.lastname }}
             </div>
 
-            <button type="submit" class="btn btn-primary">Sign up</button>
+            <button type="submit" class="btn my-btn">Sign up</button>
 
           </form>
         </div>
