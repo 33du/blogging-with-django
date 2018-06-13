@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  $(".carousel-indicators > li:first").addClass("active");
+  $(".carousel-item:first").addClass("active");
 
   var badges = ["badge-success",
                 "badge-info",

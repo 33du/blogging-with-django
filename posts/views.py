@@ -14,7 +14,7 @@ from users.forms import LoginForm, RegistrationForm
 def home(request):
     login_form = LoginForm()
     registration_form = RegistrationForm()
-    image_posts = Post.objects.all().filter(pub_time__lte=timezone.now(), image__isnull=False).order_by('-pub_time')[:5]
+    image_posts = Post.objects.all().filter(pub_time__lte=timezone.now()).exclude(image__isnull=True).order_by('-pub_time')[:5]
     image_list = []
     for post in image_posts:
         image_list.append(post.image_set.all()[:1].get())
