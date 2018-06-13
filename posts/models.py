@@ -36,6 +36,7 @@ class Image(models.Model):
     url = models.URLField()
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     text = models.CharField(max_length=300, default=None, null=True, blank=True)
+    name = models.CharField(max_length=50, default="default")
 
     def __str__(self):
-        return self.text
+        return self.name
