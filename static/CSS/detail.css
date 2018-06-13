@@ -83,6 +83,8 @@ img {
   .foot-nav {
     font-size: 0.8rem;
     padding-bottom: 1.8rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .container {
