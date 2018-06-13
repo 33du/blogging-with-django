@@ -50,14 +50,26 @@ def index(request, tag_name=''):
     if request.is_ajax():
         if request.GET.get('page_number'):
             # Paginate based on the page number in the GET request
-            page_number = request.GET.get('page_number');
+            page_number = request.GET.get('page_number')
+            response = []
             try:
-                page_objects = paginator.page(page_number).object_list
-            except Exception:
+                post_list = paginator.page(page_number).object_list
+                for post in post_list:
+                    post_dict = {}
+                    post_dict['pk'] = post.pk
+                    post_dict['title'] = post.title
+                    post_dict['pub_time'] = post.pub_time
+                    post_dict['text'] = post.text
+                    if post.image_set.all():
+                        post_dict['image_url'] = post.image_set.all()[:1].get().url
+                    else:
+                        post_dict['image_url'] = None
+                    response.append(post_dict)
+            except Exception as e:
+                print(e)
                 return HttpResponseBadRequest(content_type="text/json")
-                # Serialize the paginated objects
-            resp = serializers.serialize('json', page_objects)
-            return HttpResponse(resp, content_type="text/json")
+
+            return JsonResponse(response, safe=False)
 
     else:
         post_list = paginator.page(1).object_list
