@@ -24,7 +24,9 @@
         <img src="{{ image.url }}" alt="{{ image.text }}">
         <div class="carousel-caption">
           <h3><a class="image-link" href="{% url 'posts:detail' image.post.id %}">{{ image.post.title|truncatechars:15 }}</a></h3>
-          <p>{{ image.text }}</p>
+          <p>{% if image.text %}
+              {{ image.text }}
+            {% endif %}</p>
         </div>
       </div>
       {% endfor %}

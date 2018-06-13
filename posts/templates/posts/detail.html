@@ -41,7 +41,9 @@
       <div class="carousel-item">
         <img src="{{ image.url }}" alt="{{ image.text }}">
         <div class="carousel-caption">
-          <p>{{ image.text }}</p>
+          <p>{% if image.text %}
+              {{ image.text }}
+            {% endif %}</p>
         </div>
       </div>
       {% endfor %}
