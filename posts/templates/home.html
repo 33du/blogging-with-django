@@ -75,7 +75,7 @@
                 {% else %}
                   Anonymous user
                 {% endif %}
-                : </span>{{ comment.text|striptags|truncatechars:30 }} <br>
+                : </span>{{ comment.text|striptags|truncatechars:40 }} <br>
                 <span style="font-size:0.8rem;">on </span><a href="{% url 'posts:detail' comment.post.id %}">{{ comment.post.title }}</a></div>
 
               {% endfor %}
