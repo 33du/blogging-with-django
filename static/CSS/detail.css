@@ -32,6 +32,15 @@
   margin-bottom: 0;
 }
 
+.post-text > p > img {
+  max-width: 100%;
+  float: center;
+}
+
+.post-text > img {
+  max-width: 100%;
+}
+
 .foot-nav {
   font-size: 0.9rem;
   padding-bottom: 2rem;
