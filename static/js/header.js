@@ -35,7 +35,7 @@ $(document).ready(function() {
           if (response.has_error) {
             $("#errorMsg2").html("<span class='badge badge-pill badge-danger'>!</span> "+ response.error_msg);
           } else {
-            $("#registermodal .modal-body").html("register success!<p><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>");
+            $("#registermodal .modal-body").html("<p class='success'>Registration successful!<br><button type='button' class='btn btn-default my-btn' data-dismiss='modal'>Close</button></p>");
           }
         }
     });

@@ -48,12 +48,23 @@
 
 .form-error {
   color: red;
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+  font-size: 0.7rem;
 }
 
 .modal-body {
   padding-top: 0rem;
   padding-left: 3rem;
   padding-right: 3rem;
+}
+
+.modal-body > .success {
+  padding: 3rem;
+}
+
+.success > .btn-default {
+  margin-top: 1.5rem;
 }
 
 .modal label {
@@ -67,7 +78,7 @@
 }
 
 .modal button {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 576px) {

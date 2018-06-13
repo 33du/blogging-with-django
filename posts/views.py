@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 from django.core import serializers
 from django.utils import timezone
 
-from .models import Post, Comment, Tag
+from .models import Post, Comment, Tag, Image
 from .forms import CommentForm
 from users.forms import LoginForm, RegistrationForm
 
@@ -14,7 +14,23 @@ from users.forms import LoginForm, RegistrationForm
 def home(request):
     login_form = LoginForm()
     registration_form = RegistrationForm()
-    return render(request, 'home.html', {'login_form': login_form, 'registration_form': registration_form})
+    image_posts = Post.objects.all().filter(pub_time__lte=timezone.now(), image__isnull=False).order_by('-pub_time')[:5]
+    image_list = []
+    for post in image_posts:
+        image_list.append(post.image_set.all()[:1].get())
+
+    recent_posts = Post.objects.all().filter(pub_time__lte=timezone.now()).order_by('-pub_time')[:5]
+    recent_comments = Comment.objects.all().order_by('-pub_time')[:5]
+
+    context_objects = {
+        'login_form': login_form,
+        'registration_form': registration_form,
+        'image_list': image_list,
+        'recent_posts': recent_posts,
+        'recent_comments': recent_comments
+    }
+
+    return render(request, 'home.html', context_objects)
 
 
 def index(request, tag_name=''):

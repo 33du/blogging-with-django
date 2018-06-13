@@ -30,3 +30,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class Image(models.Model):
+    url = models.URLField()
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    text = models.CharField(max_length=300, default=None, null=True, blank=True)
+
+    def __str__(self):
+        return self.text
