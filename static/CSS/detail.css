@@ -28,6 +28,10 @@
   padding-bottom: 1.5rem;
 }
 
+.post-text > p {
+  margin-bottom: 0;
+}
+
 .foot-nav {
   font-size: 0.9rem;
   padding-bottom: 2rem;
