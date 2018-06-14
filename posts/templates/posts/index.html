@@ -62,7 +62,7 @@ $(document).ready(function() {
   var tag = "{{ tag_chosen }}";
   if (tag != null) {
     var tag_name = "{{ tag_chosen.name|cut:" " }}"
-    $('.tag[id=' + tag_name + ']').addClass('active');
+    $('.tag[id="' + tag_name + '"]').addClass('active');
   }
 });
 
