@@ -39,14 +39,24 @@ $(document).ready(function() {
 
   });
 
+  $('.child-reply-btn').click(function(){
+    $(this).parent().parent().parent().prev().find(".reply-btn").click();
+  });
+
   $(".hide-btn").click(function(){
       $(this).parent().next().toggle();
       if ($(this).html() == 'show comments') {
+        var scroll = $(window).scrollTop();
         $(this).html('&rarr;');
         $(this).parent().css({"text-decoration": "none"})
+        $(window).scrollTop(scroll);
+        return false;
       } else {
+        var scroll = $(window).scrollTop();
         $(this).html('show comments');
         $(this).parent().css({"text-decoration": "underline"});
+        $(window).scrollTop(scroll);
+        return false;
       }
   });
 
@@ -61,7 +71,10 @@ $(document).ready(function() {
             if (response.has_error) {
               alert("You cannot delete that!");
             } else {
+              var scroll = $(window).scrollTop();
               location.reload();
+              $(window).scrollTop(scroll);
+              return false;
             }
           }
       });
@@ -79,7 +92,10 @@ $(document).ready(function() {
             $("#error-msg").html("<span class='badge badge-pill badge-danger'>!</span> "+ response.error_msg);
           } else {
             $("#comment-modal").modal('toggle');
+            var scroll = $(window).scrollTop();
             location.reload();
+            $(window).scrollTop(scroll);
+            return false;
           }
         }
     });

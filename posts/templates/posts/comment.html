@@ -35,7 +35,7 @@
       <div class="hide-container"><a href="#" class="hide-btn">&rarr;</a></div>
         <div class="to-hide">
           {% for child_comment in comment.comment_set.all|dictsort:"pub_time" %}
-            <div class="comment-row" id="{{ comment.id }}">
+            <div class="comment-row" id="{{ child_comment.id }}">
               {% if child_comment.alias %}
                 <span class="comment-name">{{ child_comment.alias }}</span>
               {% elif child_comment.user  %}
@@ -45,7 +45,7 @@
               {% endif %}
               <span class="comment-time">{{ child_comment.pub_time }}</span>
               <div class="comment-text">{{ child_comment.text }}</div>
-              <button type="button" class="btn btn-outline-info btn-sm comment-btn reply-btn my-btn">Reply</button>
+              <button type="button" class="btn btn-outline-info btn-sm comment-btn child-reply-btn my-btn">Reply</button>
 
               {% if user.get_username == child_comment.user.username or user.is_superuser %}
                 <button type="button" class="btn btn-outline-secondary btn-sm delete-btn my-btn">Delete</button>
