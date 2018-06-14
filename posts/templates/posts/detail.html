@@ -12,7 +12,7 @@
   <div class="foot-nav">
     <span class="prev">
       {% if prev %}
-        <a href="{% url 'posts:detail' prev.id %}">&larr; {{ prev.title|truncatechars:15 }}</a>
+        <a href="{% url 'posts:detail' prev.id %}">&larr; {{ prev.title|truncatechars:12 }}</a>
       {% else %}
         <span class="disabled">&larr; Previous: none</span>
       {% endif %}
@@ -20,7 +20,7 @@
 
     <span class="next">
       {% if next %}
-        <a href="{% url 'posts:detail' next.id %}">{{ next.title|truncatechars:15 }} &rarr;</a>
+        <a href="{% url 'posts:detail' next.id %}">{{ next.title|truncatechars:12 }} &rarr;</a>
       {% else %}
         <span class="disabled">Next: none &rarr;</span>
       {% endif %}
