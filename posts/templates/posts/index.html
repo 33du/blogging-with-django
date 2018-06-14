@@ -154,7 +154,7 @@ var loadItems = function() {
               }
               html = html + '<h4>' + post['title'] + '</h4>' +
                   '<div class="post-time">' + datetimeParse(post['pub_time']) + '</div>' +
-                  '<div class="post-text">' + strip(post['text']).substr(0, 200) + '</div>' +
+                  '<div class="post-text">' + strip(post['text'].replace("</p>", " </p>")).substr(0, 200) + '</div>' +
                   '<a class="btn btn-outline-info my-btn" href="' + post['pk'] + '/" role="button">Read more</a>' +
                   '</div>';
 
