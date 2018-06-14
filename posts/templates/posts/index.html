@@ -113,6 +113,10 @@ function strip(html)
    return tmp.textContent || tmp.innerText || "";
 }
 
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
+}
+
 // Scroll globals
 var pageNum = 1; // The latest page loaded
 var hasNextPage = true; // Indicates whether to expect another page after this one
@@ -154,7 +158,7 @@ var loadItems = function() {
               }
               html = html + '<h4>' + post['title'] + '</h4>' +
                   '<div class="post-time">' + datetimeParse(post['pub_time']) + '</div>' +
-                  '<div class="post-text">' + strip(post['text'].replace("</p>", " </p>")).substr(0, 200) + '</div>' +
+                  '<div class="post-text">' + strip(replaceAll(post['text'], "</p>", " </p>")).substr(0, 200) + '</div>' +
                   '<a class="btn btn-outline-info my-btn" href="' + post['pk'] + '/" role="button">Read more</a>' +
                   '</div>';
 
