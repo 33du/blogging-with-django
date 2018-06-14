@@ -15,7 +15,7 @@
           <div class="filter-title">Tags</div>
           <ul class="list-group">
             {% for tag in tag_list %}
-              <a class="tag list-group-item list-group-item-action" id="{{tag.name}}" href="{% url 'posts:index' tag.name %}">
+              <a class="tag list-group-item list-group-item-action" id="{{tag.name|cut:' '}}" href="{% url 'posts:index' tag.name %}">
                 {{ tag }}<span class="badge badge-info badge-pill count-badge">{{ tag.post_set.all.count }}</span>
               </a>
             {% endfor %}
@@ -61,7 +61,7 @@ $(document).ready(function() {
 
   var tag = "{{ tag_chosen }}";
   if (tag != null) {
-    var tag_name = "{{ tag_chosen.name }}"
+    var tag_name = "{{ tag_chosen.name|cut:" " }}"
     $('.tag[id=' + tag_name + ']').addClass('active');
   }
 });
