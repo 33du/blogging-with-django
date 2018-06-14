@@ -94,4 +94,4 @@
   font-size: 0.8rem;
 }
 
-.hide-container > a:visited, .hide-container > a, .hide-container > a:active, { color:tomato !important; }
+.hide-container > a:visited, .hide-container > a, .hide-container > a:active { color:tomato !important; }

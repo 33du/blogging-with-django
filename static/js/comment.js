@@ -48,13 +48,13 @@ $(document).ready(function() {
       if ($(this).html() == 'show comments') {
         var scroll = $(window).scrollTop();
         $(this).html('&rarr;');
-        $(this).parent().css({"text-decoration": "none"})
+        $(this).parent().css({"text-decoration": "none", "padding-left": "0"})
         $(window).scrollTop(scroll);
         return false;
       } else {
         var scroll = $(window).scrollTop();
         $(this).html('show comments');
-        $(this).parent().css({"text-decoration": "underline"});
+        $(this).parent().css({"text-decoration": "underline", "padding-left": "1rem"});
         $(window).scrollTop(scroll);
         return false;
       }
