@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'g@^tjr*2=t821a-d08n9)#)_4exvlt^0h!*ss6_=bvqw0!#e-a')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = False
 # will be False if the value of the DJANGO_DEBUG environment variable is set to an empty string
-DEBUG = bool( os.environ.get('DEBUG', True) )
+# DEBUG = bool( os.environ.get('DEBUG', True) )
 
 ALLOWED_HOSTS = [
     '33du.pythonanywhere.com',
