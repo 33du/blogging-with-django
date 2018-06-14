@@ -156,9 +156,14 @@ var loadItems = function() {
                 html += '<div style="margin-bottom:1rem;">';
                 html = html +  '<img src="' +  post['image_url'] + '" style="width:100%;" alt="' + post['title'] + '"></div>';
               }
+              var text = strip(replaceAll(post['text'], "</p>", " </p>"));
+              if (text.length > 200) {
+                text = text.substr(0, 200) + "...";
+              }
+
               html = html + '<h4>' + post['title'] + '</h4>' +
                   '<div class="post-time">' + datetimeParse(post['pub_time']) + '</div>' +
-                  '<div class="post-text">' + strip(replaceAll(post['text'], "</p>", " </p>")).substr(0, 200) + '...</div>' +
+                  '<div class="post-text">' + text + '</div>' +
                   '<a class="btn btn-outline-info my-btn" href="' + post['pk'] + '/" role="button">Read more</a>' +
                   '</div>';
 
