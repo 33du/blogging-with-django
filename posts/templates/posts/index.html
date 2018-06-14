@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static %}{% load posts_custom %}
 {% block stylesheet %}
 <link rel="stylesheet" type="text/css" href="{% static 'CSS/index.css' %}" />
 {% endblock %}
@@ -36,7 +36,7 @@
               <h4>{{ post.title }}</h4>
               <div class="post-time">{{ post.pub_time }}</div>
 
-              <div class="post-text">{{ post.text|striptags|safe|truncatechars:200 }}</div>
+              <div class="post-text">{{ post.text|excerpt|truncatechars:200 }}</div>
 
               <a class="btn btn-outline-info my-btn" href="{% url 'posts:detail' post.id %}" role="button">Read more</a>
             </div>

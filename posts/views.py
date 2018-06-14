@@ -45,7 +45,7 @@ def index(request, tag_name=''):
         tag_chosen = None
         post_list = Post.objects.all().filter(pub_time__lte=timezone.now()).order_by('-pub_time')
 
-    paginator = Paginator(post_list, 10)
+    paginator = Paginator(post_list, 5)
 
     if request.is_ajax():
         if request.GET.get('page_number'):
