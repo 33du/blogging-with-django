@@ -26,12 +26,8 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
     path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
-    path(r'^summernote/', include('django_summernote.urls')),
     path(
         'favicon.ico',
         RedirectView.as_view(url=staticfiles_storage.url('favicon.ico'))
     ),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
