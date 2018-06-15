@@ -6,6 +6,8 @@ from django.core.paginator import Paginator
 from django.core import serializers
 from django.utils import timezone
 
+import markdown
+
 from .models import Post, Comment, Tag, Image
 from .forms import CommentForm
 from users.forms import LoginForm, RegistrationForm
@@ -44,6 +46,9 @@ def index(request, tag_name=''):
     else:
         tag_chosen = None
         post_list = Post.objects.all().filter(pub_time__lte=timezone.now()).order_by('-pub_time')
+
+    for post in post_list:
+            post.text = markdown.markdown(post.text)
 
     paginator = Paginator(post_list, 10)
 
@@ -87,6 +92,9 @@ def index(request, tag_name=''):
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
+
+    post.text = markdown.markdown(post.text)
+
     comment_list = post.comment_set.filter(parent_id=None).order_by('-pub_time')
     login_form = LoginForm()
     registration_form = RegistrationForm()
