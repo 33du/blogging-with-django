@@ -28,10 +28,6 @@
   padding-bottom: 1.5rem;
 }
 
-.post-text > p {
-  margin-bottom: 0;
-}
-
 .post-text > p > img {
   max-width: 100%;
 }
