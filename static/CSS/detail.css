@@ -33,6 +33,14 @@
   margin-bottom: 1.5rem;
 }
 
+.post-text > p:first-child {
+  margin-top: 0;
+}
+
+.post-text > p:last-child {
+  margin-bottom: 0;
+}
+
 .post-text > p > img {
   max-width: 100%;
 }
