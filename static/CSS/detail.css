@@ -51,6 +51,11 @@
   max-width: 100%;
 }
 
+.post-text > hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .foot-nav {
   font-size: 0.9rem;
   padding-bottom: 2rem;
