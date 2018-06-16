@@ -32,7 +32,7 @@ ALLOWED_HOSTS = [
     'localhost',
 ]
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 
 
 # Application definition
