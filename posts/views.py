@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.core.paginator import Paginator
 from django.core import serializers
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 
 import markdown
 
@@ -12,7 +13,7 @@ from .models import Post, Comment, Tag, Image
 from .forms import CommentForm
 from users.forms import LoginForm, RegistrationForm
 
-
+@csrf_exempt
 def home(request):
     login_form = LoginForm()
     registration_form = RegistrationForm()
@@ -35,6 +36,7 @@ def home(request):
     return render(request, 'home.html', context_objects)
 
 
+@csrf_exempt
 def index(request, tag_name=''):
     tag_list = Tag.objects.all()
     login_form = LoginForm()
@@ -90,6 +92,7 @@ def index(request, tag_name=''):
         return render(request, 'posts/index.html', context_objects)
 
 
+@csrf_exempt
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
 
@@ -157,6 +160,7 @@ def post_detail(request, post_id):
         return render(request, 'posts/detail.html', context_objects)
 
 
+@csrf_exempt
 def delete_comment(request):
     if request.method == 'POST':
         comment_to_delete = Comment.objects.get(id=request.POST['comment_id'])
