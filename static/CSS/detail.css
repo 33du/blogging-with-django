@@ -103,6 +103,15 @@ img {
     margin-right: 1rem;
   }
 
+  .post-text {
+    line-height: 1.6;
+  }
+
+  .post-text > p {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
+
   .comment {
     margin-left: 1rem;
     margin-right: 1rem;
