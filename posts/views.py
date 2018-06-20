@@ -38,7 +38,8 @@ def home(request):
 
 @csrf_exempt
 def index(request, tag_name=''):
-    tag_list = Tag.objects.all().order_by('id')
+    tag_list = Tag.objects.all().exclude(name="Uncategorized").order_by('id')
+    tag_list.append(Tag.objects.all().get(name="Uncategorized"))
     login_form = LoginForm()
     registration_form = RegistrationForm()
 
