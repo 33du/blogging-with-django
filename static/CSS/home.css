@@ -63,6 +63,13 @@ h4 {
   padding-top: 1rem;
 }
 
+
+@media (min-width: 960px) {
+  #myCarousel {
+      margin: 3rem 5rem;
+  }
+}
+
 @media (min-width: 1200px) {
   #myCarousel {
     margin: 5rem 15rem;
@@ -71,12 +78,6 @@ h4 {
   .container {
     padding: 7rem;
     padding-top: 0;
-  }
-}
-
-@media (min-width: 960px) {
-  #myCarousel {
-      margin: 3rem 5rem;
   }
 }
 
