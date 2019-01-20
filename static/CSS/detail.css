@@ -1,5 +1,5 @@
 .container {
-  margin: 2rem 5rem;
+  margin: 2rem 9rem;
   width: auto;
 }
 
@@ -87,7 +87,7 @@ img {
 
 @media (min-width: 1200px) {
   .container {
-    margin: 2rem 9rem;
+    margin: 2rem 18rem 2em 12em;
   }
 }
 
