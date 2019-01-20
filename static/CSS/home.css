@@ -70,6 +70,12 @@ h4 {
   }
 }
 
+@media (min-width: 960px) {
+  #myCarousel {
+      margin: 2rem 5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 2rem 2rem;
