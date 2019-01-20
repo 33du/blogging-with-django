@@ -1,5 +1,5 @@
 .container {
-  margin: 2rem 9rem;
+  margin: 2rem 15rem 2rem 9rem;
   width: auto;
 }
 
@@ -89,6 +89,12 @@ img {
   .container {
     margin: 2rem 25rem 2rem 12rem;
   }
+}
+
+@media (max-width: 1100px) {
+    .container {
+      margin: 2rem 9rem;
+    }
 }
 
 @media (max-width: 960px) {
