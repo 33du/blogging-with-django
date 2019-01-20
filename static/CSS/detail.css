@@ -87,11 +87,15 @@ img {
 
 @media (min-width: 1200px) {
   .container {
-    margin: 2rem 18rem 2em 12em;
+    margin: 2rem 25rem 2rem 12rem;
   }
 }
 
 @media (max-width: 768px) {
+  .container {
+    margin: 2rem 5rem;
+  }
+
   .container-fluid {
     padding-left: 0;
     padding-right: 0;
