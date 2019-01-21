@@ -13,7 +13,8 @@ then config the db according to /blog/settings.py
 3. create a new venv, start it and return to project folder
 4. install all requirements
 5. `python manage.py migrate`
-6. `python manage.py runserver [+port]' http://localhost:8000/
+6. `python manage.py runserver [+port]` http://localhost:8000/
+7. deploy: set environment variables SECRET_KEY and DEBUG (in /blog/.env)
 
 #### TODO:
 1. refactor existing unit tests and write new tests for other features
